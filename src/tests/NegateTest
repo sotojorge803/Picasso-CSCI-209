@@ -1,0 +1,27 @@
+package tests;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.language.expressions.Negate;
+import picasso.parser.language.expressions.RGBColor;
+import picasso.parser.language.expressions.X;
+
+public class NegateTest {
+
+	@Test
+	public void testNegateEvaluation() {
+		Negate myTree = new Negate(new X());
+		
+		assertEquals(new RGBColor(-.5, -.5, -.5), myTree.evaluate(.5, .2));
+		assertEquals(new RGBColor((-.312), (-.312), (-.312)), myTree.evaluate(.312, .4));
+		Negate myTree2 = myTree;
+		assertTrue(myTree.equals(myTree2));
+		assertTrue(myTree.toString().equals("!x"));
+
+		}
+		
+		
+	}

@@ -1,0 +1,32 @@
+package tests;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.language.expressions.Divide;
+import picasso.parser.language.expressions.RGBColor;
+import picasso.parser.language.expressions.X;
+import picasso.parser.language.expressions.Y;
+
+public class DivideTest {
+
+
+	
+	@Test
+	public void testDivideEvaluation() {
+		Divide myTree = new Divide(new X(), new Y());
+		
+		assertEquals(new RGBColor(1, 1, 1), myTree.evaluate(.5, .5));
+		assertEquals(new RGBColor(.5 / .75, .5 / .75, .5 / .75), myTree.evaluate(.5, .75));
+		Divide myTree2 = myTree;
+		assertTrue(myTree.equals(myTree2));
+		assertTrue(myTree.toString().equals("x/y"));
+
+		}
+	
+		
+		
+		
+	}

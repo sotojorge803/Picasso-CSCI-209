@@ -1,0 +1,31 @@
+package tests;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.language.expressions.Equal;
+import picasso.parser.language.expressions.RGBColor;
+import picasso.parser.language.expressions.Variable;
+import picasso.parser.language.expressions.X;
+
+public class EqualsTest {
+
+
+	
+	@Test
+	public void testEqualsEvaluation() {
+		Equal myTree = new Equal(new Variable("a"),new X());
+		
+		assertEquals(new RGBColor(-1, -1, -1), myTree.evaluate(1,.5));
+		Equal myTree2 = myTree;
+		assertTrue(myTree.equals(myTree2));
+		assertTrue(myTree.toString().equals("a=x"));
+	
+		
+	}
+	
+
+}

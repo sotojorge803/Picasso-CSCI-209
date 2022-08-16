@@ -1,0 +1,39 @@
+package tests;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
+import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.language.expressions.Sin;
+import picasso.parser.language.expressions.RGBColor;
+import picasso.parser.language.expressions.X;
+
+public class SinTest {
+
+
+	
+	@Test
+	public void testSinEvaluation() {
+		Sin myTree = new Sin(new X());
+		
+		assertEquals(new RGBColor(Math.sin(.4), Math.sin(.4), Math.sin(.4)), myTree.evaluate(.4, -1));
+		assertEquals(new RGBColor(Math.sin(.999), Math.sin(.999), Math.sin(.999)), myTree.evaluate(.999, -1));
+		assertEquals(new RGBColor(Math.sin(-.7), Math.sin(-.7), Math.sin(-.7)), myTree.evaluate(-.7, -1));
+		
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.sin(i), Math.sin(i), Math.sin(i)), myTree.evaluate(i, -i));
+			assertEquals(new RGBColor(Math.sin(i), Math.sin(i), Math.sin(i)), myTree.evaluate(i, i));
+		}
+		
+		double[] tests = {-.7, -.00001, .000001, .5};
+		
+		for( double testVal : tests) {
+			double SinOfTestVal = Math.sin(testVal);
+			assertEquals(new RGBColor(SinOfTestVal, SinOfTestVal, SinOfTestVal), myTree.evaluate(testVal, -1));
+			assertEquals(new RGBColor(SinOfTestVal, SinOfTestVal, SinOfTestVal), myTree.evaluate(testVal, testVal));
+		}
+		
+	}
+
+}

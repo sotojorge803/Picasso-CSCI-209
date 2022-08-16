@@ -1,0 +1,32 @@
+package tests;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.language.expressions.Exponentiate;
+import picasso.parser.language.expressions.RGBColor;
+import picasso.parser.language.expressions.X;
+import picasso.parser.language.expressions.Y;
+
+public class ExponentiateTest {
+
+
+	
+	@Test
+	public void testExponentiateEvaluation() {
+		Exponentiate myTree = new Exponentiate(new X(), new Y());
+		
+		assertEquals(new RGBColor(Math.pow(.5, .5), Math.pow(.5, .5), Math.pow(.5, .5)), myTree.evaluate(.5, .5));
+		assertEquals(new RGBColor(Math.pow(.5, .75), Math.pow(.5, .75), Math.pow(.5, .75)), myTree.evaluate(.5, .75));
+		Exponentiate myTree2 = myTree;
+		assertTrue(myTree.equals(myTree2));
+		assertTrue(myTree.toString().equals("x^y"));
+
+		}
+	
+		
+		
+		
+	}

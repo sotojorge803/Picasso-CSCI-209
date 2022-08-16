@@ -1,0 +1,28 @@
+import org.junit.Test;
+
+import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.language.expressions.Mod;
+import picasso.parser.language.expressions.RGBColor;
+import picasso.parser.language.expressions.X;
+import picasso.parser.language.expressions.Y;
+
+public class ModTest {
+
+
+	
+	@Test
+	public void testModEvaluation() {
+		Mod myTree = new Mod(new X(), new Y());
+		
+		assertEquals(new RGBColor(0, 0, 0), myTree.evaluate(.5, .5));
+		assertEquals(new RGBColor((.5 % .75), (.5 % .75), (.5 % .75)), myTree.evaluate(.5, .75));
+		Mod myTree2 = myTree;
+		assertTrue(myTree.equals(myTree2));
+		assertTrue(myTree.toString().equals("x%y"));
+
+		}
+	
+		
+		
+		
+	}
